@@ -3,6 +3,12 @@
   publish = "dist"
   functions = "netlify/functions"
 
+# AI_PROVIDER ("gemini") and GEMINI_MODEL are non-sensitive config values that
+# legitimately appear in source and the bundled function, so skip scanning them.
+# GEMINI_API_KEY is still scanned.
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "AI_PROVIDER,GEMINI_MODEL"
+
 [[redirects]]
   from = "/api/ask"
   to = "/.netlify/functions/ask"
