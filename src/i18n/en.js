@@ -14,6 +14,7 @@ export default {
   'common.off': 'Off',
   'common.source': 'Source',
   'common.sources': 'Sources',
+  'common.photo': 'Photo',
   'common.listen': 'Listen',
   'common.stop': 'Stop',
   'common.estimate': 'estimate',

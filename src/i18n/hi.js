@@ -14,6 +14,7 @@ export default {
   'common.off': 'बंद',
   'common.source': 'स्रोत',
   'common.sources': 'स्रोत',
+  'common.photo': 'फ़ोटो',
   'common.listen': 'सुनो',
   'common.stop': 'रोको',
   'common.estimate': 'अंदाज़ा',

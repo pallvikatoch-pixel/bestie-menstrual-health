@@ -2,9 +2,21 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useApp } from '../lib/store.jsx'
 import { COMFORT, HABITS, ROUTINE_SOURCES, STRETCHES, STRETCH_SECONDS } from '../content/comfort.js'
-import { StretchArt } from '../components/Art.jsx'
+import { STRETCH_PHOTO_CREDITS } from '../content/stretchPhotoCredits.js'
 import Icon from '../components/Icon.jsx'
 import { Dialog, Listen, PageHeader, Sources } from '../components/ui.jsx'
+
+// Real, openly-licensed photos (see src/content/stretchPhotoCredits.js) — the photo IS the
+// content here, not decoration, so it gets real alt text instead of aria-hidden.
+function StretchPhoto({ id, name, className = '' }) {
+  return <img src={`/art/stretches/${id}.jpg`} alt={name} className={`w-full h-full object-cover ${className}`} loading="lazy" />
+}
+function PhotoCredit({ id, className = '' }) {
+  const { t } = useApp()
+  const c = STRETCH_PHOTO_CREDITS[id]
+  if (!c) return null
+  return <p className={`source ${className}`}>{t('common.photo')}: <a href={c.source} target="_blank" rel="noopener noreferrer">{c.by}</a> ({c.license})</p>
+}
 
 const ICONS = { heat: 'heat', bath: 'bath', massage: 'massage', rest: 'rest', drink: 'drinkcup', pill: 'pill', move: 'move', sleep: 'sleep', eat: 'eat', water: 'water', talk: 'talk' }
 
@@ -30,12 +42,13 @@ export default function FeelBetter() {
             {STRETCHES.map((s) => (
               <li key={s.id} className="card !p-4">
                 <div className="flex gap-3 items-center mb-2">
-                  <span className="w-24 h-16 shrink-0 rounded-2xl bg-cream"><StretchArt id={s.art} /></span>
+                  <span className="w-24 h-16 shrink-0 rounded-2xl overflow-hidden bg-cream"><StretchPhoto id={s.art} name={L(s.name)} /></span>
                   <h3 className="font-bold text-lg">{L(s.name)}</h3>
                 </div>
                 <ol className="list-decimal pl-5 space-y-0.5">{L(s.steps).map((st, i) => <li key={i}>{st}</li>)}</ol>
                 <p className="hint mt-1">{t('fb.hold')}</p>
                 <Listen text={() => `${L(s.name)}. ${L(s.steps).join('. ')}`} className="mt-2" />
+                <PhotoCredit id={s.art} className="mt-1" />
               </li>
             ))}
           </ul>
@@ -120,7 +133,7 @@ function Routine({ onExit }) {
       <h2 id="run-h" className="font-display text-2xl font-bold">{L(s.name)}</h2>
       <div className="relative mx-auto my-4 w-56 h-56 grid place-items-center">
         <div className={`absolute inset-0 rounded-full bg-lav ${paused ? '' : 'breathe'}`} aria-hidden="true" />
-        <div className="relative w-40 h-28"><StretchArt id={s.art} /></div>
+        <div className="relative w-40 h-28 rounded-2xl overflow-hidden"><StretchPhoto id={s.art} name={L(s.name)} /></div>
       </div>
       <p className="font-semibold" aria-hidden="true">{t('fb.breathe')}</p>
       <p className="font-display text-3xl font-bold" aria-live="off">{left}</p>
