@@ -1,0 +1,70 @@
+// Feel better: comfort ideas for period pain and everyday wellbeing.
+// Only measures NHS / ACOG / WHO support. No herbs, supplements, diets or cycle-phase plans. No medicine names or doses.
+export const ROUTINE_SOURCES = ['nhsPain', 'acogPain']
+export const STRETCH_SECONDS = 30
+
+export const STRETCHES = [
+  { id: 'child', art: 'child',
+    name: { en: 'Child’s pose', hi: 'बालासन (चाइल्ड पोज़)' },
+    steps: { en: ['Kneel on a mat or bed with your knees apart.', 'Sit back towards your heels.', 'Stretch your arms forward and rest your forehead down.', 'Breathe slowly into your belly.'],
+             hi: ['चटाई या बिस्तर पर घुटनों के बल बैठो, घुटने थोड़े खुले.', 'एड़ियों की तरफ़ पीछे बैठो.', 'हाथ आगे फैलाओ और माथा नीचे टिकाओ.', 'पेट से धीरे-धीरे साँस लो.'] } },
+  { id: 'catcow', art: 'catcow',
+    name: { en: 'Cat–cow', hi: 'मार्जरी आसन (कैट–काउ)' },
+    steps: { en: ['Start on hands and knees.', 'Breathing in, let your belly drop and look up gently.', 'Breathing out, round your back like a cat.', 'Move slowly between the two.'],
+             hi: ['हाथों और घुटनों के बल आओ.', 'साँस लेते हुए पेट नीचे जाने दो और हल्का ऊपर देखो.', 'साँस छोड़ते हुए पीठ को बिल्ली की तरह गोल करो.', 'दोनों के बीच धीरे-धीरे आओ-जाओ.'] } },
+  { id: 'knees', art: 'knees',
+    name: { en: 'Knees to chest', hi: 'घुटने छाती की ओर' },
+    steps: { en: ['Lie on your back.', 'Bring both knees towards your chest.', 'Hold them gently with your hands.', 'Rock softly side to side if it feels nice.'],
+             hi: ['पीठ के बल लेटो.', 'दोनों घुटने छाती की तरफ़ लाओ.', 'हाथों से उन्हें हल्के से पकड़ो.', 'अच्छा लगे तो धीरे से दाएँ-बाएँ झूलो.'] } },
+  { id: 'twist', art: 'twist',
+    name: { en: 'Lying twist', hi: 'लेटकर मोड़ (ट्विस्ट)' },
+    steps: { en: ['Lie on your back with knees bent.', 'Let both knees fall gently to one side.', 'Stretch your arms out and relax your shoulders.', 'After a few breaths, switch sides.'],
+             hi: ['घुटने मोड़कर पीठ के बल लेटो.', 'दोनों घुटनों को धीरे से एक तरफ़ गिरने दो.', 'हाथ फैलाओ और कंधे ढीले छोड़ो.', 'कुछ साँसों के बाद दूसरी तरफ़ करो.'] } },
+  { id: 'butterfly', art: 'butterfly',
+    name: { en: 'Lying butterfly', hi: 'लेटकर तितली आसन' },
+    steps: { en: ['Lie on your back.', 'Bring the soles of your feet together.', 'Let your knees fall open. Put a pillow under each knee if you like.', 'Rest your hands on your belly.'],
+             hi: ['पीठ के बल लेटो.', 'दोनों तलवे आपस में मिलाओ.', 'घुटनों को बाहर की ओर खुलने दो. चाहो तो हर घुटने के नीचे तकिया रखो.', 'हाथ पेट पर रखो.'] } },
+  { id: 'breath', art: 'breath',
+    name: { en: 'Slow belly breathing', hi: 'पेट से धीमी साँस' },
+    steps: { en: ['Lie or sit comfortably.', 'Put one hand on your belly.', 'Breathe in slowly through your nose and feel your belly rise.', 'Breathe out even more slowly.'],
+             hi: ['आराम से लेटो या बैठो.', 'एक हाथ पेट पर रखो.', 'नाक से धीरे साँस लो और पेट को ऊपर उठता महसूस करो.', 'और भी धीरे साँस छोड़ो.'] } },
+]
+
+export const COMFORT = [
+  { id: 'heat', icon: 'heat', src: ['nhsPain', 'acogPain'],
+    t: { en: 'Warmth', hi: 'गर्माहट' },
+    b: { en: 'A hot water bottle or heat pad on your belly or lower back. Wrap it in a cloth so it’s warm, not hot.', hi: 'पेट या कमर पर गर्म पानी की बोतल या हीट पैड. कपड़े में लपेटो ताकि गुनगुना लगे, जलाए नहीं.' } },
+  { id: 'bath', icon: 'bath', src: ['nhsPain'],
+    t: { en: 'Warm bath', hi: 'गुनगुने पानी से नहाना' },
+    b: { en: 'Warm water can help tight muscles relax.', hi: 'गुनगुना पानी कसी मांसपेशियों को आराम देता है.' } },
+  { id: 'massage', icon: 'massage', src: ['nhsPain'],
+    t: { en: 'Gentle massage', hi: 'हल्की मालिश' },
+    b: { en: 'Slow, light circles on your lower belly.', hi: 'पेट के निचले हिस्से पर धीरे-धीरे हल्के गोल घुमाना.' } },
+  { id: 'rest', icon: 'rest', src: ['nhsPain'],
+    t: { en: 'Rest and relax', hi: 'आराम करो' },
+    b: { en: 'Lie down, listen to music or breathe slowly. Relaxing can ease pain.', hi: 'लेट जाओ, गाना सुनो या धीरे साँस लो. आराम से दर्द कम हो सकता है.' } },
+  { id: 'drink', icon: 'drink', src: [],
+    t: { en: 'A warm drink', hi: 'कुछ गर्म पीना' },
+    b: { en: 'Just for comfort. Something warm to hold can feel cosy.', hi: 'सिर्फ़ आराम के लिए. हाथ में कुछ गर्म पकड़ना सुकून दे सकता है.' } },
+  { id: 'painkiller', icon: 'pill', src: ['nhsPain'],
+    t: { en: 'Painkillers', hi: 'दर्द की दवा' },
+    b: { en: 'Some painkillers from a chemist can help. Ask a pharmacist or doctor which one is safe for you, especially if you’re under 18 or have other health conditions.', hi: 'केमिस्ट से मिलने वाली कुछ दवाएँ मदद कर सकती हैं. फ़ार्मासिस्ट या डॉक्टर से पूछो कि तुम्हारे लिए कौन सी सुरक्षित है, ख़ासकर अगर तुम 18 से कम हो या कोई और बीमारी है.' } },
+]
+
+export const HABITS = [
+  { id: 'move', icon: 'move', src: ['whoActivity'],
+    t: { en: 'Move a little every day', hi: 'रोज़ थोड़ा चलो-फिरो' },
+    b: { en: 'Walking, dancing, playing: any activity you enjoy is good for your body and mood.', hi: 'टहलना, नाचना, खेलना: जो भी तुम्हें पसंद हो, शरीर और मूड के लिए अच्छा है.' } },
+  { id: 'sleep', icon: 'sleep', src: ['nhsPMS'],
+    t: { en: 'Sleep well', hi: 'अच्छी नींद लो' },
+    b: { en: 'Enough sleep helps you feel more like yourself.', hi: 'पूरी नींद से तुम ज़्यादा अच्छा महसूस करती हो.' } },
+  { id: 'eat', icon: 'eat', src: ['whoDiet'],
+    t: { en: 'Regular, balanced meals', hi: 'नियमित, संतुलित खाना' },
+    b: { en: 'Fruits, vegetables, dals and grains, with meals at regular times.', hi: 'फल, सब्ज़ियाँ, दालें और अनाज, और खाना नियमित समय पर.' } },
+  { id: 'water', icon: 'water', src: ['whoDiet'],
+    t: { en: 'Drink water', hi: 'पानी पियो' },
+    b: { en: 'Keep a bottle nearby through the day.', hi: 'दिन भर पास में पानी की बोतल रखो.' } },
+  { id: 'talk', icon: 'talk', src: ['teleManas'],
+    t: { en: 'Talk when things feel heavy', hi: 'मन भारी हो तो बात करो' },
+    b: { en: 'Share with someone you trust. Tele-MANAS (14416) is free, any time.', hi: 'किसी भरोसेमंद से बात करो. टेली-मानस (14416) मुफ़्त है, किसी भी समय.' } },
+]
