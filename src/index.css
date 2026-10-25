@@ -1,0 +1,128 @@
+@import '@fontsource/nunito/latin-400.css';
+@import '@fontsource/nunito/latin-600.css';
+@import '@fontsource/nunito/latin-700.css';
+@import '@fontsource/nunito/latin-800.css';
+@import '@fontsource/baloo-2/latin-600.css';
+@import '@fontsource/baloo-2/latin-700.css';
+@import '@fontsource/baloo-2/devanagari-400.css';
+@import '@fontsource/baloo-2/devanagari-600.css';
+@import '@fontsource/baloo-2/devanagari-700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Colour tokens (space-separated RGB so Tailwind can add opacity). */
+:root {
+  color-scheme: light;
+  /* Light theme: soft shades of pink */
+  --cream: 255 245 248;   /* #FFF5F8 page */
+  --blush: 248 216 228;   /* #F8D8E4 */
+  --lav: 242 226 244;     /* #F2E2F4 pink-lilac */
+  --peach: 253 228 230;   /* #FDE4E6 rose-peach */
+  --mint: 250 234 240;    /* #FAEAF0 pale pink */
+  --plum: 56 42 61;       /* #382A3D text */
+  --soft: 108 74 96;      /* secondary text, AA on all the pinks */
+  --card: 255 255 255;
+  --accent: 176 58 108;   /* #B03A6C rose, AA with white text */
+  --calm: 74 87 140;      /* calm indigo for "worth a look" cards (never harsh red) */
+  --line: 240 212 224;
+  --shadow: 120 40 80;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+/* Dark theme: chosen in Settings, or "Match my phone" when the phone is in dark mode */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --cream: 34 26 39; --blush: 74 46 62; --lav: 56 48 82; --peach: 78 54 44; --mint: 38 64 54;
+    --plum: 248 238 242; --soft: 214 196 210; --card: 46 36 52; --accent: 240 160 196; --calm: 176 190 245;
+    --line: 78 64 86; --shadow: 0 0 0;
+  }
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --cream: 34 26 39; --blush: 74 46 62; --lav: 56 48 82; --peach: 78 54 44; --mint: 38 64 54;
+  --plum: 248 238 242; --soft: 214 196 210; --card: 46 36 52; --accent: 240 160 196; --calm: 176 190 245;
+  --line: 78 64 86; --shadow: 0 0 0;
+}
+/* High contrast */
+:root.hc { --soft: 40 28 46; --plum: 20 10 26; --accent: 120 30 70; --calm: 30 40 100; --line: 90 70 100; }
+:root.hc[data-theme='dark'] { --soft: 255 255 255; --plum: 255 255 255; --accent: 255 190 220; --calm: 200 210 255; --line: 220 200 230; }
+@media (prefers-color-scheme: dark) {
+  :root.hc:not([data-theme='light']) { --soft: 255 255 255; --plum: 255 255 255; --accent: 255 190 220; --calm: 200 210 255; --line: 220 200 230; }
+}
+
+html { scroll-padding-top: env(safe-area-inset-top, 0px); -webkit-text-size-adjust: 100%; }
+html.ts-1 { font-size: 112.5%; }
+html.ts-2 { font-size: 125%; }
+html, body, #root { min-height: 100%; }
+body {
+  @apply bg-cream text-plum font-body antialiased;
+  font-size: 1rem;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+h1, h2, h3 { @apply font-display text-plum; line-height: 1.2; }
+:lang(hi) body, :lang(hi) { line-height: 1.7; }
+
+/* Visible keyboard focus everywhere */
+:focus-visible { outline: 3px solid rgb(var(--accent)); outline-offset: 3px; border-radius: 0.75rem; }
+
+@layer components {
+  a.card, button.card { @apply transition-shadow; }
+  @media (hover: hover) { a.card:hover, button.card:hover { box-shadow: 0 10px 30px rgb(var(--shadow) / 0.12); } }
+  /* Desktop masonry columns: cards never split across columns */
+  .cols-2 > * { break-inside: avoid; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-5 font-bold min-h-[48px] transition active:scale-[0.97] disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-accent text-white shadow-soft; }
+  :root[data-theme='dark'] .btn-primary { color: rgb(var(--cream)); }
+  .btn-soft { @apply btn bg-lav text-plum; }
+  .btn-ghost { @apply btn bg-transparent text-plum underline-offset-4 hover:underline; }
+  .btn-outline { @apply btn border-2 border-line bg-card text-plum; }
+  .card { @apply bg-card rounded-blob shadow-soft p-5; }
+  .chip { @apply inline-flex items-center gap-2 rounded-full border-2 border-line bg-card px-4 min-h-[48px] font-semibold text-plum transition; }
+  .chip[aria-pressed='true'], .chip[aria-checked='true'] { @apply border-accent bg-blush; }
+  .label { @apply block font-bold mb-2; }
+  .hint { @apply text-soft text-[0.95rem]; }
+  .input { @apply w-full rounded-2xl border-2 border-line bg-card px-4 min-h-[48px] text-plum placeholder:text-soft/70; }
+  .source { @apply text-sm text-soft; }
+  .source a { @apply underline underline-offset-2; }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .btn-primary { color: rgb(var(--cream)); }
+}
+
+/* Gentle motion, skipped with reduced motion */
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes pop { 0% { transform: scale(0.6); opacity: 0; } 60% { transform: scale(1.15); opacity: 1; } 100% { transform: scale(1); opacity: 0; } }
+@keyframes dots { 0%, 80%, 100% { opacity: 0.25; } 40% { opacity: 1; } }
+@keyframes breathe { 0%, 100% { transform: scale(0.75); } 50% { transform: scale(1); } }
+.rise { animation: rise 0.35s ease-out both; }
+.pop { animation: pop 0.9s ease-out both; }
+.dot { animation: dots 1.2s infinite; }
+.breathe { animation: breathe 8s ease-in-out infinite; }
+.flip-inner { display: grid; transition: transform 0.4s; transform-style: preserve-3d; }
+.flip-face { grid-area: 1 / 1; }
+.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.flip-back { transform: rotateY(180deg); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  .flip-inner { transform: none !important; }
+  .flipped .flip-front { display: none; }
+  .flip-back { transform: none; }
+  .flip-card:not(.flipped) .flip-back { display: none; }
+  .flip-face { backface-visibility: visible; }
+  .breathe { animation: none; }
+}
+
+/* Print: only the visit summary */
+@media print {
+  body { background: white !important; color: black !important; }
+  .no-print { display: none !important; }
+  .print-page { box-shadow: none !important; padding: 0 !important; }
+  :root { padding: 0; }
+}

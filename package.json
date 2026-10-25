@@ -1,0 +1,29 @@
+{
+  "name": "bestie-menstrual-health",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:ai": "node scripts/dev-ai.mjs",
+    "build": "vite build",
+    "build:single": "vite build --mode single",
+    "preview": "vite preview",
+    "test": "node tests/run.mjs"
+  },
+  "dependencies": {
+    "@fontsource/baloo-2": "5.2.5",
+    "@fontsource/nunito": "5.2.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-router-dom": "6.26.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "4.3.1",
+    "autoprefixer": "10.4.20",
+    "postcss": "8.4.47",
+    "tailwindcss": "3.4.13",
+    "vite": "5.4.8",
+    "vite-plugin-singlefile": "2.0.2"
+  }
+}
